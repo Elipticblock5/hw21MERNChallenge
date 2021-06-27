@@ -7,18 +7,18 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 //import { , deleteBook } from '../utils/API';
 
 // added
-import { GET_MYSELF } from "../utils/queries";
-import { BOOK_REMOVE, } from "../utils/mutations";
+import { GET_ME } from "../utils/queries";
+import { REMOVE_BOOK } from "../utils/mutations";
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
 
-  const { loading, data } = useQuery(GET_MYSELF);
+  const { loading, data } = useQuery(GET_ME);
   const [userData, setUserData] = useState({});
 
   
-  const [deleteBook, { error }] = useMutation(BOOK_REMOVE);
+  const [deleteBook, { error }] = useMutation(REMOVE_BOOK);
   console.log(error);
 
   const userData = data?.me || {};
