@@ -4,6 +4,8 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
+import { ADD_USER } from "../utils/mutations";
+
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
@@ -11,6 +13,19 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  //new code
+
+  const [addUser, { error }] = useMutation(ADD_USER);
+
+//add use Effect
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,8 +41,19 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
+//new try 
 
-    try {
+try {
+  const { data } = await addUser({
+    variables: { ...userFormData },
+  });
+
+  Auth.login(data.addUser.token);
+} catch (err) {
+  console.error(err);
+}
+
+   /* try {
       const response = await createUser(userFormData);
 
       if (!response.ok) {
@@ -41,6 +67,7 @@ const SignupForm = () => {
       console.error(err);
       setShowAlert(true);
     }
+    */
 
     setUserFormData({
       username: '',
