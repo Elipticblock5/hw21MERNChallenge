@@ -8,6 +8,7 @@ type User {
     bookCount: Int
     savedBooks: [Book]
 }
+
 type Book {
     bookId: ID
     authors: [String]
@@ -16,6 +17,7 @@ type Book {
     image: String
     link: String
 }
+
 type Auth {
     token: ID!
     user: User
@@ -41,6 +43,7 @@ type Mutation {
     saveBook(booKData: BookInput!):User
     removeBook(bookId: ID!): User
 }
+
 `;
 
 

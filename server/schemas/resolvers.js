@@ -3,10 +3,13 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 
 const { signToken } = require('../utils/auth');
+/*  greening out as server not testing
+
 
 const resolvers = {
 
     //Quary
+
     Query: {
       me: async (parent, args, context) => {
         if (context.user) {
@@ -45,6 +48,10 @@ const resolvers = {
           const token = signToken(user);
           return { token, user };
         },
+
+
+
+
         saveBook: async (parent, { bookData }, context) => {
           if (context.user) {
             const updatedUser = await User.findByIdAndUpdate(
@@ -58,6 +65,8 @@ const resolvers = {
     
           throw new AuthenticationError("You have to be logged in!");
         },
+
+
         removeBook: async (parent, { bookId }, context) => {
           if (context.user) {
             const updatedUser = await User.findOneAndUpdate(
@@ -75,5 +84,7 @@ const resolvers = {
     };
     
     module.exports = resolvers;
+
+    */
 
     
